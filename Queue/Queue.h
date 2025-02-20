@@ -36,9 +36,6 @@
 #define PrintQueue(queue) \
     print_queue(CheckQueue(queue))
 
-#define Reverse(queue) \
-    reverse(CheckQueue(queue))
-
 #define SameType(a, b) \
     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
@@ -56,7 +53,6 @@ bool is_empty(Queue *);
 size_t size(Queue *);
 void free_queue(Queue *);
 Queue *copy(Queue *);
-void reverse(Queue *);
 
 void print_queue(Queue *);
 
