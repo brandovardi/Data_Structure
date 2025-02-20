@@ -80,7 +80,7 @@ void *pop(Stack *stack)
     if (stack->top == NULL)
         stack->bottom = NULL;
 
-    free_node(top);
+    free(top);
     stack->size--;
 
     return data;
@@ -113,12 +113,17 @@ void free_stack(Stack *stack)
     while (curr != NULL)
     {
         Node *prev = getPrev(curr);
-        free_node(curr);
+        free(getData(curr));
+        free(curr);
         curr = prev;
     }
+    stack->top = NULL;
+    stack->bottom = NULL;
+    stack->size = 0;
+    stack->data_size = 0;
 
-    free(stack->data_type);
     free(stack);
+    stack = NULL;
 }
 
 Stack *copy(Stack *stack)
@@ -217,4 +222,50 @@ void print_stack(Stack *stack)
 
         curr = getPrev(curr);
     }
+}
+
+void reverse(Stack *stack)
+{
+    if (stack == NULL)
+    {
+        printf("The Stack is NULL.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    Stack *newstack = create_stack(stack->data_size, stack->data_type);
+
+    if (stack->top == NULL)
+        return;
+
+    Node *curr = stack->top;
+
+    void *data_copy = malloc(stack->data_size);
+    validate_memory_allocation(data_copy);
+    memcpy(data_copy, getData(curr), stack->data_size);
+
+    newstack->top = create_node(data_copy, stack->data_size, stack->data_type);
+    newstack->bottom = newstack->top;
+    newstack->size = 1;
+
+    Node *new_curr = newstack->top;
+    curr = getPrev(curr);
+
+    while (curr != NULL)
+    {
+        data_copy = malloc(stack->data_size);
+        validate_memory_allocation(data_copy);
+        memcpy(data_copy, getData(curr), stack->data_size);
+
+        Node *newNode = create_node(data_copy, stack->data_size, stack->data_type);
+
+        setPrev(newNode, new_curr);
+        newstack->top = newNode;
+        newstack->size++;
+
+        new_curr = newNode;
+        curr = getPrev(curr);
+    }
+
+    free_stack(stack);
+    stack = copy(newstack);
 }

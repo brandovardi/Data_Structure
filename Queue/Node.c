@@ -74,18 +74,3 @@ void *getData(Node *node)
 {
     return (node != NULL) ? node->data : NULL;
 }
-
-void free_node(Node *node)
-{
-    if (node == NULL)
-        return;
-
-    if (node->data != NULL)
-        free(node->data);
-    // if (node->prev != NULL)
-    //     free(node->data);
-    if (node->next != NULL)
-        free(node->next);
-
-    free(node);
-}

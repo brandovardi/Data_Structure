@@ -19,6 +19,4 @@ void setData(Node *, void *, size_t, char *);
 Node *getNext(Node *);
 void *getData(Node *);
 
-void free_node(Node *);
-
 #endif /* _NODE_H */

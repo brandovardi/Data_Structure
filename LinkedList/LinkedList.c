@@ -148,7 +148,8 @@ static void remove_last(LinkedList *list)
     {
         list->last = getPrev(list->last);
         setNext(list->last, NULL);
-        free_node(last);
+        free(getData(last));
+        free(last);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -160,7 +161,8 @@ static void remove_head(LinkedList *list)
     // if the list has only one element, so there is only the head
     if (getNext(list->head) == NULL)
     {
-        free_node(list->head);
+        free(getData(list->head));
+        free(list->head);
         list->head = NULL;
         list->last = NULL;
         list->size = 0;
@@ -173,7 +175,8 @@ static void remove_head(LinkedList *list)
         // clear the head and delete it
         list->head = getNext(list->head);
         setPrev(list->head, NULL);
-        free_node(head);
+        free(getData(head));
+        free(head);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -201,7 +204,8 @@ void remove_at(LinkedList *list, size_t index)
         setNext(curr, NULL);
         setPrev(curr, NULL);
         // finally free the memory of the deleted element
-        free_node(curr);
+        free(getData(curr));
+        free(curr);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -409,6 +413,7 @@ void free_list(LinkedList *list)
     list->head = NULL;
     list->last = NULL;
     list->size = 0;
+    list->data_size = 0;
     free(list);
 }
 

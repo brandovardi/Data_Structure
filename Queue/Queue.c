@@ -83,7 +83,8 @@ void *dequeue(Queue *queue)
     if (queue->head == NULL)
         queue->tail = NULL;
 
-    free_node(head);
+    free(getData(head));
+    free(head);
     queue->size--;
 
     return data;
@@ -116,7 +117,8 @@ void free_queue(Queue *queue)
     while (curr != NULL)
     {
         Node *next = getNext(curr);
-        free_node(curr);
+        free(getData(curr));
+        free(curr);
         curr = next;
     }
 

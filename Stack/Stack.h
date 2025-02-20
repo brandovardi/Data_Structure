@@ -9,9 +9,9 @@
 #define CreateStack(type) \
     create_stack(sizeof(*((type *)0)), #type)
 
-#define Push(stack, data)                                      \
-    {                                                          \
-        __typeof__(data) _tmp = (data);                        \
+#define Push(stack, data)                                \
+    {                                                    \
+        __typeof__(data) _tmp = (data);                  \
         push(CheckStack(stack), &_tmp, GetTypeOf(_tmp)); \
     }
 
@@ -36,6 +36,9 @@
 #define PrintStack(stack) \
     print_stack(CheckStack(stack))
 
+#define Reverse(stack) \
+    reverse(CheckStack(stack))
+
 #define SameType(a, b) \
     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
@@ -53,6 +56,7 @@ bool is_empty(Stack *);
 size_t size(Stack *);
 void free_stack(Stack *);
 Stack *copy(Stack *);
+void reverse(Stack *);
 
 void print_stack(Stack *stack);
 
