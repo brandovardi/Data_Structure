@@ -227,3 +227,49 @@ void print_queue(Queue *queue)
         curr = getNext(curr);
     }
 }
+
+void reverse(Queue *queue)
+{
+    if (queue == NULL)
+    {
+        printf("The Stack is NULL.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    Queue *newqueue = create_queue(queue->data_size, queue->data_type);
+
+    if (queue->head == NULL)
+        return;
+
+    Node *curr = queue->head;
+
+    void *data_copy = malloc(queue->data_size);
+    validate_memory_allocation(data_copy);
+    memcpy(data_copy, getData(curr), queue->data_size);
+
+    newqueue->head = create_node(data_copy, queue->data_size, queue->data_type);
+    newqueue->tail = newqueue->head;
+    newqueue->size = 1;
+
+    Node *new_curr = newqueue->head;
+    curr = getNext(curr);
+
+    while (curr != NULL)
+    {
+        data_copy = malloc(queue->data_size);
+        validate_memory_allocation(data_copy);
+        memcpy(data_copy, getData(curr), queue->data_size);
+
+        Node *newNode = create_node(data_copy, queue->data_size, queue->data_type);
+
+        setNext(newNode, new_curr);
+        newqueue->head = newNode;
+        newqueue->size++;
+
+        new_curr = newqueue->head;
+        curr = getNext(curr);
+    }
+
+    free_queue(queue);
+    queue = copy(newqueue);
+}

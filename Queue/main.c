@@ -13,6 +13,10 @@ int main(int argc, char* argv[])
     Queue *queue2 = Copy(queue);
     PrintQueue(queue2);
 
+    Reverse(queue2);
+
+    PrintQueue(queue2);
+
     FreeQueue(queue);
     FreeQueue(queue2);
     
