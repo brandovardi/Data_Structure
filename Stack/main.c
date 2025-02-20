@@ -16,8 +16,6 @@ int main(int argc, char* argv[])
     Stack *stack2 = Copy(stack);
     PrintStack(stack2);
 
-    Reverse(stack2);
-
     PrintStack(stack2);
 
     return 0;

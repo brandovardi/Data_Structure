@@ -36,9 +36,6 @@
 #define PrintStack(stack) \
     print_stack(CheckStack(stack))
 
-#define Reverse(stack) \
-    reverse(CheckStack(stack))
-
 #define SameType(a, b) \
     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
@@ -56,7 +53,6 @@ bool is_empty(Stack *);
 size_t size(Stack *);
 void free_stack(Stack *);
 Stack *copy(Stack *);
-void reverse(Stack *);
 
 void print_stack(Stack *stack);
 
