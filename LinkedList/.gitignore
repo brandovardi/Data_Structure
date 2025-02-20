@@ -1,0 +1,11 @@
+*.exe
+.vscode/
+.gdb_history
+main
+LinkedList
+tmp.txt
+Exception
+vc140.pdb
+.idea/
+.codegpt
+run
