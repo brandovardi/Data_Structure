@@ -18,13 +18,13 @@ typedef struct LinkedList LinkedList;
         insert_at(CheckList(list), &_tmp, index, GetTypeOf(_tmp)); \
     }
 
-#define AddFirst(list, data)                                 \
+#define PushFront(list, data)                                \
     {                                                        \
         __typeof__(data) _tmp = (data);                      \
         push_front(CheckList(list), &_tmp, GetTypeOf(_tmp)); \
     }
 
-#define AddLast(list, data)                                 \
+#define PushBack(list, data)                                \
     {                                                       \
         __typeof__(data) _tmp = (data);                     \
         push_back(CheckList(list), &_tmp, GetTypeOf(_tmp)); \
@@ -39,7 +39,7 @@ typedef struct LinkedList LinkedList;
         set(CheckList(list), &_tmp, index, GetTypeOf(_tmp)); \
     }
 
-#define PeekFirst(list) \
+#define PeekHead(list) \
     peek_head(CheckList(list))
 
 #define PeekLast(list) \
@@ -79,11 +79,11 @@ typedef struct LinkedList LinkedList;
 #define CheckList(list) \
     (SameType(list, LinkedList *) ? ((LinkedList *)(list)) : (NULL))
 
-#define NULL_LIST printf("Exception - List is NULL.\n")
-#define EMPTY_LIST printf("Exception - List has no element.\n")
-#define NULL_DATA printf("Exception - Data is NULL.\n")
-#define INVALID_DATA_TYPE printf("Exception - Data Type is not valid.\n")
-#define INDEX_OUT_OF_BOUND printf("Exception - Index Out Of Bound.\n")
+#define NULL_LIST printf("List is NULL.\n")
+#define EMPTY_LIST printf("List has no element.\n")
+#define NULL_DATA printf("Data is NULL.\n")
+#define INVALID_DATA_TYPE printf("Data Type is not valid.\n")
+#define INDEX_OUT_OF_BOUND printf("Index Out Of Bound.\n")
 
 LinkedList *create_list(size_t, char *);
 

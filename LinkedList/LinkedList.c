@@ -148,8 +148,7 @@ static void remove_last(LinkedList *list)
     {
         list->last = getPrev(list->last);
         setNext(list->last, NULL);
-        free(getData(last));
-        free(last);
+        free_node(last);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -161,8 +160,7 @@ static void remove_head(LinkedList *list)
     // if the list has only one element, so there is only the head
     if (getNext(list->head) == NULL)
     {
-        free(getData(list->head));
-        free(list->head);
+        free_node(list->head);
         list->head = NULL;
         list->last = NULL;
         list->size = 0;
@@ -175,8 +173,7 @@ static void remove_head(LinkedList *list)
         // clear the head and delete it
         list->head = getNext(list->head);
         setPrev(list->head, NULL);
-        free(getData(head));
-        free(head);
+        free_node(head);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -198,16 +195,13 @@ void remove_at(LinkedList *list, size_t index)
         Node *curr = list->head;
         for (cnt = 0; (getNext(curr) != NULL) && (cnt < index); curr = getNext(curr), cnt++)
             ;
-        // start clearing the data
-        free(getData(curr));
         // modify the list by deleting the desired element
         setPrev(getNext(curr), getPrev(curr));
         setNext(getPrev(curr), getNext(curr));
         setNext(curr, NULL);
         setPrev(curr, NULL);
         // finally free the memory of the deleted element
-        free(curr);
-        curr = NULL;
+        free_node(curr);
         (list->size <= 0) ?: (list->size--);
     }
 }
@@ -369,7 +363,7 @@ void *pop(LinkedList *list)
 {
     validate_list("pop()", list, NULL, 0, NULL, true, false, false, false);
 
-    void *last = malloc(sizeof(void));
+    void *last = malloc(list->data_size);
     memcpy(last, getData(list->last), list->data_size);
 
     remove_last(list);
@@ -415,6 +409,7 @@ void free_list(LinkedList *list)
     list->head = NULL;
     list->last = NULL;
     list->size = 0;
+    free(list);
 }
 
 void validate_list(char *funName, LinkedList *list, char *data, size_t index, char *datatype, bool checkhead, bool is_data, bool is_index, bool is_datatype)

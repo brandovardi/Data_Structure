@@ -80,8 +80,7 @@ void *pop(Stack *stack)
     if (stack->top == NULL)
         stack->bottom = NULL;
 
-    free(getData(top));
-    free(top);
+    free_node(top);
     stack->size--;
 
     return data;
@@ -114,8 +113,7 @@ void free_stack(Stack *stack)
     while (curr != NULL)
     {
         Node *prev = getPrev(curr);
-        free(getData(curr));
-        free(curr);
+        free_node(curr);
         curr = prev;
     }
 
