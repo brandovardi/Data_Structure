@@ -6,7 +6,7 @@ struct LinkedList
 {
     Node *head;
     Node *last;
-    size_t size; // length of the list
+    size_t size;      // length of the list
     size_t data_size; // Size of each element
     char *data_type;
 };

@@ -1,5 +1,7 @@
-#define USER_TYPES DECLARE_TYPE(Car), DECLARE_TYPE(Bike)
+#define USER_TYPES DECLARE_TYPE(Car), DECLARE_TYPE(Bike), DECLARE_TYPE(Gatto)
 #include "LinkedList.h"
+
+typedef int Gatto;
 
 typedef struct Car
 {
@@ -14,6 +16,7 @@ typedef struct Bike
 int main(int argc, char const *argv[])
 {
     LinkedList *list = CreateList(char *);
+    LinkedList *ls = CreateList(Gatto);
     char *data = "Hello, World!";
     PushFront(list, data);
     PushBack(list, "Hello, World! 2");
