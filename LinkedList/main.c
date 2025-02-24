@@ -22,14 +22,14 @@ int main(int argc, char const *argv[])
     PushBack(list, "Hello, World! 2");
     PushBack(list, "Hello, World! 3");
 
-    char *last = *(char **)get(list, 0);
+    char *last = *(char **)Get(list, 0);
     printf("Last element: %s\n", last);
 
-    print_list(list);
+    PrintList(list);
 
-    free_list(list);
+    FreeList(list);
 
-    print_list(list);
+    PrintList(list);
 
     return EXIT_SUCCESS;
 }
