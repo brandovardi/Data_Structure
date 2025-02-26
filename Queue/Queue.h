@@ -12,35 +12,35 @@
 #define Push(queue, data)                                   \
     {                                                       \
         __typeof__(data) _tmp = (data);                     \
-        enqueue(CheckQueue(queue), &_tmp, GetTypeOf(_tmp)); \
+        enqueue(queue, &_tmp, GetTypeOf(_tmp)); \
     }
 
 #define Pop(queue) \
-    dequeue(CheckQueue(queue))
+    dequeue(queue)
 
 #define Peek(queue) \
-    peek(CheckQueue(queue))
+    peek(queue)
 
 #define IsEmpty(queue) \
-    is_empty(CheckQueue(queue))
+    is_empty(queue)
 
 #define Size(queue) \
-    size(CheckQueue(queue))
+    size(queue)
 
 #define FreeQueue(queue) \
-    free_queue(CheckQueue(queue))
+    free_queue(queue)
 
 #define Copy(queue) \
-    copy(CheckQueue(queue))
+    copy(queue)
 
 #define PrintQueue(queue) \
-    print_queue(CheckQueue(queue))
+    print_queue(queue)
 
-#define SameType(a, b) \
-    (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
+// #define SameType(a, b) \
+//     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
-#define CheckQueue(queue) \
-    (SameType(queue, Queue *) ? ((Queue *)(queue)) : (NULL))
+// #define CheckQueue(queue) \
+//     (SameType(queue, Queue *) ? ((Queue *)(queue)) : (NULL))
 
 typedef struct Queue Queue;
 

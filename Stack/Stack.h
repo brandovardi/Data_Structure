@@ -9,38 +9,38 @@
 #define CreateStack(type) \
     create_stack(sizeof(*((type *)0)), #type)
 
-#define Push(stack, data)                                \
-    {                                                    \
-        __typeof__(data) _tmp = (data);                  \
-        push(CheckStack(stack), &_tmp, GetTypeOf(_tmp)); \
+#define Push(stack, data)                    \
+    {                                        \
+        __typeof__(data) _tmp = (data);      \
+        push(stack, &_tmp, GetTypeOf(_tmp)); \
     }
 
 #define Pop(stack) \
-    pop(CheckStack(stack))
+    pop(stack)
 
 #define Peek(stack) \
-    peek(CheckStack(stack))
+    peek(stack)
 
 #define IsEmpty(stack) \
-    is_empty(CheckStack(stack))
+    is_empty(stack)
 
 #define Size(stack) \
-    size(CheckStack(stack))
+    size(stack)
 
 #define FreeStack(stack) \
-    free_stack(CheckStack(stack))
+    free_stack(stack)
 
 #define Copy(stack) \
-    copy(CheckStack(stack))
+    copy(stack)
 
 #define PrintStack(stack) \
-    print_stack(CheckStack(stack))
+    print_stack(stack)
 
-#define SameType(a, b) \
-    (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
+// #define SameType(a, b) \
+//     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
-#define CheckStack(stack) \
-    (SameType(stack, Stack *) ? ((Stack *)(stack)) : (NULL))
+// #define CheckStack(stack) \
+//     (SameType(stack, Stack *) ? ((Stack *)(stack)) : (NULL))
 
 typedef struct Stack Stack;
 

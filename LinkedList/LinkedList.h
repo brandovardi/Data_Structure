@@ -12,75 +12,75 @@ typedef struct LinkedList LinkedList;
 #define CreateList(type) \
     create_list(sizeof(*((type *)0)), #type)
 
-#define InsertAt(list, data, index)                                \
-    {                                                              \
-        __typeof__(data) _tmp = (data);                            \
-        insert_at(CheckList(list), &_tmp, index, GetTypeOf(_tmp)); \
+#define InsertAt(list, data, index)                     \
+    {                                                   \
+        __typeof__(data) _tmp = (data);                 \
+        insert_at(list, &_tmp, index, GetTypeOf(_tmp)); \
     }
 
-#define PushFront(list, data)                                \
-    {                                                        \
-        __typeof__(data) _tmp = (data);                      \
-        push_front(CheckList(list), &_tmp, GetTypeOf(_tmp)); \
+#define PushFront(list, data)                     \
+    {                                             \
+        __typeof__(data) _tmp = (data);           \
+        push_front(list, &_tmp, GetTypeOf(_tmp)); \
     }
 
-#define PushBack(list, data)                                \
-    {                                                       \
-        __typeof__(data) _tmp = (data);                     \
-        push_back(CheckList(list), &_tmp, GetTypeOf(_tmp)); \
+#define PushBack(list, data)                     \
+    {                                            \
+        __typeof__(data) _tmp = (data);          \
+        push_back(list, &_tmp, GetTypeOf(_tmp)); \
     }
 
 #define RemoveAt(list, index) \
-    remove_at(CheckList(list), index)
+    remove_at(list, index)
 
-#define Set(list, data, index)                               \
-    {                                                        \
-        __typeof__(data) _tmp = (data);                      \
-        set(CheckList(list), &_tmp, index, GetTypeOf(_tmp)); \
+#define Set(list, data, index)                    \
+    {                                             \
+        __typeof__(data) _tmp = (data);           \
+        set(list, &_tmp, index, GetTypeOf(_tmp)); \
     }
 
 #define PeekHead(list) \
-    peek_head(CheckList(list))
+    peek_head(list)
 
 #define PeekLast(list) \
-    peek_last(CheckList(list))
+    peek_last(list)
 
 #define GetNode(list, index) \
-    get_node(CheckList(list), index)
+    get_node(list, index)
 
 #define Get(list, index) \
-    get(CheckList(list), index)
+    get(list, index)
 
 #define Peek(list) \
-    peek(CheckList(list))
+    peek(list)
 
 #define Pop(list) \
-    pop(CheckList(list))
+    pop(list)
 
 /**
  * if you're trying to print a list of a custom type, or a char*
  * you have to build your own print function
  */
 #define PrintList(list) \
-    print_list(CheckList(list))
+    print_list(list)
 
 #define FreeList(list) \
-    free_list(CheckList(list))
+    free_list(list)
 
 #define Size(list) \
-    size(CheckList(list))
+    size(list)
 
-#define IndexOf(list, data)                                \
-    {                                                      \
-        __typeof__(data) _tmp = (data);                    \
-        index_of(CheckList(list), &_tmp, GetTypeOf(_tmp)); \
+#define IndexOf(list, data)                     \
+    {                                           \
+        __typeof__(data) _tmp = (data);         \
+        index_of(list, &_tmp, GetTypeOf(_tmp)); \
     }
 
-#define SameType(a, b) \
-    (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
+// #define SameType(a, b) \
+//     (__builtin_types_compatible_p(__typeof__(a), __typeof__(b)))
 
-#define CheckList(list) \
-    (SameType(list, LinkedList *) ? ((LinkedList *)(list)) : (NULL))
+// #define CheckList(list) \
+//     (SameType(list, LinkedList *) ? ((LinkedList *)(list)) : (NULL))
 
 #define NULL_LIST printf("List is NULL.\n")
 #define EMPTY_LIST printf("List has no element.\n")
