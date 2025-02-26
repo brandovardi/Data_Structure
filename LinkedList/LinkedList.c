@@ -212,7 +212,7 @@ void remove_at(LinkedList *list, size_t index)
 
 static void set_head(LinkedList *list, void *data, char *data_type)
 {
-    validate_list("set()->set_last()", list, data, 0, data_type, true, true, false, true);
+    validate_list("set()->set_head()", list, data, 0, data_type, true, true, false, true);
 
     setData(list->head, data, list->data_size, list->data_type);
 }
